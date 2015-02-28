@@ -1,2 +1,6 @@
-Your First Brisket App
+Homepage
 ==============
+
+* /resume
+
+* /thermax
