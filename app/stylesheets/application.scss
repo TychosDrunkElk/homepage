@@ -1,0 +1,21 @@
+@import "./reset";
+@import "./variables/colors";
+
+// @import "compass/css3/box-shadow";
+@import "compass/css3";
+
+@import "../components/layout/layout";
+@import "../components/header/header";
+
+
+@import "../components/theramax/theramax";
+@import "../components/resume/resume";
+body {
+    font-family: 'Helvetica';
+    font-weight: 100;
+    background: $grey;
+}
+
+a {
+    text-decoration: none;
+}

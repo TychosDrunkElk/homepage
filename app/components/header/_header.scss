@@ -1,0 +1,12 @@
+header {
+    position: fixed;
+    padding: 1rem;
+    width: 100%;
+    background: rgba($grey, 0.8);
+    @include box-shadow(0px 1px 10px $dark-grey);
+
+    h1 a {
+        font-size: 2rem;
+        color: white;
+    }
+}

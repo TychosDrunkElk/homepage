@@ -1,0 +1,84 @@
+.resume {
+    font-family: "courier new", Courier, monospace;
+    .time-period {
+        color: $dark-grey;
+    }
+    &__subsection {
+        &__header {
+            font-style: italic;
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+    }
+    &__section {
+        background: $white;
+        margin: 1rem;
+        padding: 1.5rem;
+        border: 1px solid $dark-grey;
+        &__header {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            &:before {
+                content: "+";
+                display: inline-block;
+                margin-right: 0.5rem;
+                @include transition(transform .4s ease);
+                @include transform-origin(center center);    
+                vertical-align: text-top;
+            }
+        }
+
+        &__content {
+            overflow: hidden;
+            max-height: 0;
+            @include transition(max-height .5s ease);
+        }
+
+        &.open {
+            .resume__section {
+                &__header {
+                    &:before {
+                        @include transform(rotate(45deg));
+                    }
+                }
+                &__content {
+                    max-height: 600px;
+                }
+            }
+        }
+    }
+}
+
+.school {
+    &__details {
+        width: 60%;
+        display: inline-block;
+        line-height: 2rem;
+    }
+
+    &__logo {
+        display: inline-block;
+        width: 15%;
+        float: right;
+
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.experience-list {
+    padding: .5rem 0;
+    &__item {
+        position: relative;
+        margin-left: 1rem;
+        line-height: 1.25rem;
+        padding: .25rem 0;
+        &:before {
+            content: "-";
+            position: absolute;
+            left: -1rem;
+
+        }
+    }
+}
