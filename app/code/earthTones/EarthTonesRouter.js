@@ -1,16 +1,16 @@
 'use strict';
 
 var RouterBrewery = require('../routing/RouterBrewery');
-var TheramaxView = require('./TheramaxView');
+var EarthTonesView = require('./EarthTonesView');
 
 var HomeRouter = RouterBrewery.create({
 
     routes: {
-        'theremax': 'theramax'
+        'earth-tones': 'earthTones'
     },
 
-    theramax: function() {
-        return new TheramaxView();
+    earthTones: function() {
+        return new EarthTonesView();
     }
 
 });

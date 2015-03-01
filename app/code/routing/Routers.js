@@ -9,7 +9,8 @@ var Routers = Brisket.Routers.toUse({
     routers: [
         require('../home/HomeRouter'),
         require('../theramax/TheramaxRouter'),
-        require('../resume/ResumeRouter')
+        require('../resume/ResumeRouter'),
+        require('../earthTones/EarthTonesRouter')
     ]
 
 });

@@ -33,12 +33,14 @@ var TheramaxView = BaseView.extend({
         var timeOut, lastImageData;
         var canvasSource = this.$("#canvas-source")[0];
         var canvasBlended = this.$("#canvas-blended")[0];
+        var canvasSquares = this.$("#canvas-squares")[0];
         var contextSource = canvasSource.getContext('2d');
         var contextBlended = canvasBlended.getContext('2d');
-        var notes = [];
+        var contextSquares = canvasSquares.getContext('2d');
 
         contextSource.translate(canvasSource.width, 0);
         contextSource.scale(-1, 1);
+
         
         this.setupVideo();
 
@@ -75,7 +77,7 @@ var TheramaxView = BaseView.extend({
         var width = canvasSource.width;
         var height = canvasSource.height;
         var zoneWidth = width / 5;
-        var zoneHeight = height / 6;
+        var zoneHeight = height / 5;
         var baseFrequency = 192.0 / 1.5;
         var prevFrequency = 0;
         var freq;
@@ -88,8 +90,9 @@ var TheramaxView = BaseView.extend({
         function checkAreas() {
             var maxAvg = 0;
             var maxAvgFreq = 0;
+            var activeX, activeY;
             _.times(5, function(n) {
-                _.times(6, function(m) {
+                _.times(5, function(m) {
                     var blendedData = contextBlended.getImageData(
                     (n) * zoneWidth,
                     (m) * zoneHeight,
@@ -108,6 +111,8 @@ var TheramaxView = BaseView.extend({
                     if (average > maxAvg && average > 10) {
                         maxAvg = average;
                         maxAvgFreq = ((n + 1) * 1.5 * baseFrequency) * (1 + (m)/8);
+                        activeX = n * zoneWidth;
+                        activeY = m * zoneHeight;
                     }
                 });
                 
@@ -115,11 +120,18 @@ var TheramaxView = BaseView.extend({
         
             note.freq.linTo(maxAvgFreq, "100ms");
 
+            // http://www.paulirish.com/2009/random-hex-color-code-snippets/
+            contextSquares.fillStyle = '#'+Math.floor(Math.random()*16777215).toString(16);
+            
+            contextSquares.clearRect(0, 0, width, height);
+            contextSquares.fillRect(activeX, activeY, zoneWidth, zoneHeight);
+
             setTimeout(checkAreas, 100);
         }
 
-        checkAreas();
         update();
+        checkAreas();
+
     },
 
 });
