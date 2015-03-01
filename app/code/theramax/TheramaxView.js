@@ -78,19 +78,23 @@ var TheramaxView = BaseView.extend({
         var height = canvasSource.height;
         var zoneWidth = width / 5;
         var zoneHeight = height / 5;
-        var baseFrequency = 192.0 / 1.5;
+        var baseFrequency = 76 / 1.5;
         var prevFrequency = 0;
         var freq;
-        var note = T("sin", {freq: T("param")});
+        var note1 = T("sin", {freq: T("param")});
+        var note2 = T("sin", {freq: T("param")});
 
         // var chordArray = _.chunk(new Array(5*6), 5);
 
-        note.play();
+        note1.play();
+        note2.play();
 
         function checkAreas() {
             var maxAvg = 0;
             var maxAvgFreq = 0;
-            var activeX, activeY;
+            var secMaxAvg = 0;
+            var secMaxAvgFreq = 0;
+            var activeX, activeY, secActiveX, secActiveY;
             _.times(5, function(n) {
                 _.times(5, function(m) {
                     var blendedData = contextBlended.getImageData(
@@ -108,23 +112,30 @@ var TheramaxView = BaseView.extend({
                     }
                     // calculate an average between of the color values of the note area
                     average = Math.round(average / (blendedData.data.length / 4));
-                    if (average > maxAvg && average > 10) {
+                    if (average > maxAvg && average > 20) {
                         maxAvg = average;
                         maxAvgFreq = ((n + 1) * 1.5 * baseFrequency) * (1 + (m)/8);
                         activeX = n * zoneWidth;
                         activeY = m * zoneHeight;
+                    } else if (average > secMaxAvg && average > 20) {
+                        secMaxAvg = average;
+                        secMaxAvgFreq = ((n + 1) * 1.5 * baseFrequency) * (1 + (m)/4);
+                        secActiveX = n * zoneWidth;
+                        secActiveY = m * zoneHeight;
                     }
                 });
                 
             });
         
-            note.freq.linTo(maxAvgFreq, "100ms");
+            note1.freq.linTo(maxAvgFreq, "100ms");
+            note2.freq.linTo(secMaxAvgFreq, "100ms");
 
             // http://www.paulirish.com/2009/random-hex-color-code-snippets/
             contextSquares.fillStyle = '#'+Math.floor(Math.random()*16777215).toString(16);
             
             contextSquares.clearRect(0, 0, width, height);
             contextSquares.fillRect(activeX, activeY, zoneWidth, zoneHeight);
+            contextSquares.fillRect(secActiveX, secActiveY, zoneWidth, zoneHeight);
 
             setTimeout(checkAreas, 100);
         }

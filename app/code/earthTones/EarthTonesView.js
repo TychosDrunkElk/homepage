@@ -55,9 +55,7 @@ var EarthTonesView = BaseView.extend({
 
                     map.bubbles([bubble]);
 
-                    console.log(Math.pow(sortedData[i].properties.mag +1, 2));
-
-                    note.freq.linTo(Math.pow(sortedData[i].properties.mag +1, 2) * 100, "100ms");
+                    note.freq.linTo(Math.pow(sortedData[i].properties.mag + 1, 2) * 50, "100ms");
                     ++i;
                 }
 
@@ -65,7 +63,6 @@ var EarthTonesView = BaseView.extend({
                 clearInterval(playFunction);
             }
             timeTracker += interval;
-            console.log(timeTracker);
         }
         
         setInterval(playFunction, 100);
