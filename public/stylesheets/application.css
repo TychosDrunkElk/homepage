@@ -94,14 +94,16 @@ header h1 a {
 #canvas-blended {
   margin: 0 auto;
   display: block;
+  width: 1000px;
 }
 
-/* line 14, ../../app/components/theramax/_theramax.scss */
+/* line 15, ../../app/components/theramax/_theramax.scss */
 #canvas-squares {
   position: relative;
-  top: -480px;
+  top: -750px;
   margin: 0 auto;
   display: block;
+  width: 1000px;
 }
 
 /* line 1, ../../app/components/resume/_resume.scss */

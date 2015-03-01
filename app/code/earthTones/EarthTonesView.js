@@ -32,7 +32,7 @@ var EarthTonesView = BaseView.extend({
             return earthquake.properties.time;
         });
 
-        var note = T("sin", {freq: T("param")});
+        var note = T("tri", {freq: T("param")});
 
         note.play();
 
