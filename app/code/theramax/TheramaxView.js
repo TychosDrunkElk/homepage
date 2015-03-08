@@ -82,12 +82,12 @@ var TheramaxView = BaseView.extend({
         var prevFrequency = 0;
         var freq;
         var note1 = T("sin", {freq: T("param")});
-        var note2 = T("sin", {freq: T("param")});
+        // var note2 = T("sin", {freq: T("param")});
 
         // var chordArray = _.chunk(new Array(5*6), 5);
 
         note1.play();
-        note2.play();
+        // note2.play();
 
         function checkAreas() {
             var maxAvg = 0;
@@ -117,25 +117,26 @@ var TheramaxView = BaseView.extend({
                         maxAvgFreq = ((n + 1) * 1.5 * baseFrequency) * (1 + (m)/8);
                         activeX = n * zoneWidth;
                         activeY = m * zoneHeight;
-                    } else if (average > secMaxAvg && average > 20) {
-                        secMaxAvg = average;
-                        secMaxAvgFreq = ((n + 1) * 1.5 * baseFrequency) * (1 + (m)/4);
-                        secActiveX = n * zoneWidth;
-                        secActiveY = m * zoneHeight;
-                    }
+                    } 
+                    // else if (average > secMaxAvg && average > 20) {
+                    //     secMaxAvg = average;
+                    //     secMaxAvgFreq = ((n + 1) * 1.5 * baseFrequency) * (1 + (m)/4);
+                    //     secActiveX = n * zoneWidth;
+                    //     secActiveY = m * zoneHeight;
+                    // }
                 });
                 
             });
         
             note1.freq.linTo(maxAvgFreq, "100ms");
-            note2.freq.linTo(secMaxAvgFreq, "100ms");
+            // note2.freq.linTo(secMaxAvgFreq, "100ms");
 
             // http://www.paulirish.com/2009/random-hex-color-code-snippets/
             contextSquares.fillStyle = '#'+Math.floor(Math.random()*16777215).toString(16);
             
             contextSquares.clearRect(0, 0, width, height);
             contextSquares.fillRect(activeX, activeY, zoneWidth, zoneHeight);
-            contextSquares.fillRect(secActiveX, secActiveY, zoneWidth, zoneHeight);
+            // contextSquares.fillRect(secActiveX, secActiveY, zoneWidth, zoneHeight);
 
             setTimeout(checkAreas, 100);
         }
