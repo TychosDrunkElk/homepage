@@ -5,6 +5,7 @@
   "author": "Your name",
   "main": "server.js",
   "engines": {
+    "npm": "1.3.14",
     "node": "0.10.22"
   },
   "dependencies": {
