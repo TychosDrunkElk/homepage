@@ -1,1 +1,4 @@
+node_modules
+public/javascripts
 .sass-cache
+app/build
