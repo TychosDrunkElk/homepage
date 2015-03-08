@@ -4,6 +4,9 @@
   "description": "My first brisket app",
   "author": "Your name",
   "main": "server.js",
+  "engines": {
+    "node": "0.10.x"
+  },
   "dependencies": {
     "brisket": "*",
     "express": "~4.0.0",
