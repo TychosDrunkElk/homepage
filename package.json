@@ -24,7 +24,6 @@
     "timbre": "~14.11.25",
     "lame": "~1.1.2",
     "ogg": "~1.1.2",
-    "vorbis": "~0.1.1",
     "d3": "~3.5.5",
     "datamaps-all-browserify": "~0.3.4",
     "moment": "~2.9.0"
