@@ -6,7 +6,7 @@
   "main": "server.js",
   "engines": {
     "npm": "1.9.8",
-    "node": "0.10.22"
+    "node": "0.10.28"
   },
   "dependencies": {
     "brisket": "~0.27.8",
@@ -22,12 +22,8 @@
     "lodash": "~3.2.0",
     "hogan": "~1.0.2",
     "hogan.js": "~3.0.2",
-    "timbre": "~14.11.25",
-    "lame": "~1.1.2",
-    "ogg": "~1.1.2",
     "d3": "~3.5.5",
-    "datamaps-all-browserify": "~0.3.4",
-    "moment": "~2.9.0"
+    "datamaps-all-browserify": "~0.3.4"
   },
   "devDependencies": {}
 }
