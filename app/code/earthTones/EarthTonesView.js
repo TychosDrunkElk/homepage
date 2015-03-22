@@ -7,6 +7,13 @@ var T = require('../../vendor/timbre');
 var EarthTonesView = BaseView.extend({
     template: 'earthTones/earth_tones',
 
+    onClose: function() {
+        console.log("CLOSING");
+        debugger;
+        clearInterval(this.playFunctionId);
+        this.note.stop();
+    },
+
     onDOM: function() {
         var datamaps = require('datamaps-all-browserify');
         var earthquakeData = require('../../vendor/all_day.json')
@@ -32,15 +39,17 @@ var EarthTonesView = BaseView.extend({
             return earthquake.properties.time;
         });
 
-        var note = T("tri", {freq: T("param")});
+        var view = this;
+        this.note = T("tri", {freq: T("param")});
 
-        note.play();
+        this.note.play();
 
         var prevTime = 0;
 
         var timeTracker = sortedData[0].properties.time;
         var interval = Math.round((sortedData[sortedData.length -1].properties.time - sortedData[0].properties.time)/(1500))
         var i = 0;
+
         var playFunction = function(){
             if(sortedData[i]) {
 
@@ -55,17 +64,18 @@ var EarthTonesView = BaseView.extend({
 
                     map.bubbles([bubble]);
 
-                    note.freq.linTo(Math.pow(sortedData[i].properties.mag + 1, 2) * 50, "100ms");
+                    view.note.freq.linTo(Math.pow(sortedData[i].properties.mag + 1, 2) * 50, "100ms");
                     ++i;
                 }
 
             } else {
                 clearInterval(playFunction);
+                this.note.stop();
             }
             timeTracker += interval;
         }
-        
-        setInterval(playFunction, 100);
+
+        this.playFunctionId = setInterval(playFunction, 100);
     }
 });
 
